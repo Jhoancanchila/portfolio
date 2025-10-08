@@ -2,6 +2,11 @@
 import Menu from "@icons/Menu.astro";
 import { Image } from "astro:assets";
 import type { HeaderProps } from "@types";
+import LanguajePicker from './LanguajePicker.astro';
+
+import { getLangFromUrl, getTranslatedText } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
 
 type Props = HeaderProps;
 
@@ -43,13 +48,14 @@ const { siteLogo, navLinks } = Astro.props;
               class={`nav-item relative block p-2 text-sm font-medium transition-all duration-500 after:absolute after:bottom-0 after:left-2/4 after:h-2 after:w-1 after:-translate-x-2/4 after:text-primary after:opacity-0 after:content-['•'] hover:text-white`}
               href={link.href}
             >
-              {link.text}
+              {getTranslatedText(link.text, lang)}
             </a>
           </li>
         ))
       }
     </ul>
   </nav>
+  <LanguajePicker />
 </header>
 
 <script>

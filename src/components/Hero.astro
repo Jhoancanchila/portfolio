@@ -4,6 +4,9 @@ import SplitText from "./react/SplitText";
 type Props = HeroProps;
 
 const { name, specialty, summary, email } = Astro.props;
+
+import { getTranslatedText, getLangFromUrl } from '../i18n/utils';
+const lang = getLangFromUrl(Astro.url);
 ---
 
 <section class="py-24 md:py-32" id="#hero">
@@ -26,15 +29,15 @@ const { name, specialty, summary, email } = Astro.props;
   <p
     class="mb-9 font-serif text-4xl leading-[46px] font-bold tracking-tighter text-primary sm:text-5xl md:text-6xl"
   >
-    {specialty}
+    {getTranslatedText(specialty, lang)}
   </p>
   <p class="mb-16 text-base font-normal text-neutral md:text-lg">
-    {summary}
+    {getTranslatedText(summary, lang)}
   </p>
 
   <a
     class="inline-block rounded-full bg-primary px-8 py-5 text-sm leading-5 font-medium text-[#fff]"
-    href={`mailto:${email}`}>Get in Touch</a
+    href={`mailto:${email}`}>{getTranslatedText('hero.contact', lang)}</a
   >
 </section>
 
