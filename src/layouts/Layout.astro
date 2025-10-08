@@ -1,4 +1,5 @@
 ---
+import { ClientRouter } from 'astro:transitions';
 import Header from "@components/Header.astro";
 import "@fontsource/be-vietnam-pro";
 import "@fontsource-variable/gabarito";
@@ -33,6 +34,9 @@ const currentLang = getLangFromUrl(Astro.url);
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{`${author} - ${getTranslatedText(title, currentLang)}`}</title>
+    
+    <!-- ClientRouter habilita las view transitions -->
+    <ClientRouter />
 
     <meta property="og:title" content={`${author} - ${getTranslatedText(title, currentLang)}`} />
     <meta property="og:description" content={getTranslatedText(description, currentLang)} />
