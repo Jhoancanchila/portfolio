@@ -9,9 +9,12 @@ interface Props {
 }
 
 const { projects } = Astro.props;
+
+import { getLangFromUrl, getTranslatedText } from '../i18n/utils';
+const lang = getLangFromUrl(Astro.url);
 ---
 
-<Section text="Featured Projects" href="projects">
+<Section text={getTranslatedText('projects.featuredProjects', lang)} href="projects">
   {
     projects.map(({ name, summary, image, linkPreview, linkSource, tools }, index) => {
       const top = 98 + index * 40;
@@ -25,21 +28,21 @@ const { projects } = Astro.props;
               <h3 class="mb-5 font-serif text-3xl font-medium text-primary">
                 {name}
               </h3>
-              <p class="text-base text-neutral mb-6">{summary}</p>
+              <p class="text-base text-neutral mb-6">{getTranslatedText(summary, lang)}</p>
               <div class="flex gap-5 text-white mb-5">
                 <a
                   href={linkSource}
                   target="_blank"
                   class="after:relative after:bottom-[-5px] after:content-[url(/external.svg)] hover:underline"
                 >
-                  Source
+                  {getTranslatedText('projects.sourceCode', lang)}
                 </a>
                 <a
                   href={linkPreview}
                   target="_blank"
                   class="after:relative after:bottom-[-5px] after:content-[url(/external.svg)] hover:underline"
                 >
-                  Preview
+                  {getTranslatedText('projects.livePreview', lang)}
                 </a>
               </div>
               <div class="flex gap-2 flex-wrap mt-auto">
