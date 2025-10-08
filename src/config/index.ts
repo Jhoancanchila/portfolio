@@ -4,7 +4,7 @@ export const SITE_CONFIG: SiteConfig = {
   title: "hero.profile",
   author: "Jhoan Canchila",
   description:
-    "Software Engineer based in San Francisco, USA. I specialize in UI design, web and mobile application development and maintenance.",
+    "hero.summary",
   lang: "es",
   siteLogo: "/alejandro-small.jpg",
   navLinks: [

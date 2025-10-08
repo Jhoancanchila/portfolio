@@ -27,22 +27,22 @@ const currentLang = getLangFromUrl(Astro.url);
 <html lang={currentLang || lang} class="scroll-pt-16 scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content={getTranslatedText('hero.summary', currentLang)} />
+    <meta name="description" content={getTranslatedText(description, currentLang)} />
     <meta name="author" content={author} />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <title>{`${author} - ${getTranslatedText('hero.profile', currentLang)}`}</title>
+    <title>{`${author} - ${getTranslatedText(title, currentLang)}`}</title>
 
-    <meta property="og:title" content={`${author} - ${getTranslatedText('hero.profile', currentLang)}`} />
-    <meta property="og:description" content={getTranslatedText('hero.summary', currentLang)} />
+    <meta property="og:title" content={`${author} - ${getTranslatedText(title, currentLang)}`} />
+    <meta property="og:description" content={getTranslatedText(description, currentLang)} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:image" content={ogImgUrl} />
 
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content={canonicalURL} />
-    <meta property="twitter:title" content={`${author} - ${getTranslatedText('hero.profile', currentLang)}`} />
-    <meta property="twitter:description" content={getTranslatedText('hero.summary', currentLang)} />
+    <meta property="twitter:title" content={`${author} - ${getTranslatedText(title, currentLang)}`} />
+    <meta property="twitter:description" content={getTranslatedText(description, currentLang)} />
     <meta property="twitter:image" content={ogImgUrl} />
   </head>
   <body class="bg-black font-sans">
