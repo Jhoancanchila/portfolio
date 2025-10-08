@@ -1,0 +1,147 @@
+---
+// src/components/LanguagePicker.astro
+import { languages, defaultLang } from '../i18n/ui';
+import { getLangFromUrl } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const currentPath = Astro.url.pathname;
+
+// Función para construir la URL correcta según el idioma
+function buildLanguageUrl(targetLang: string, currentPath: string, currentLang: string) {
+  // Remover el prefijo del idioma actual de la ruta
+  let cleanPath = currentPath;
+  
+  // Si el idioma actual no es el por defecto, remover su prefijo
+  if (currentLang !== defaultLang) {
+    cleanPath = currentPath.replace(new RegExp(`^/${currentLang}(/|$)`), '/');
+  }
+  
+  // Asegurar que la ruta comience con /
+  if (!cleanPath.startsWith('/')) {
+    cleanPath = '/' + cleanPath;
+  }
+  
+  // Si la ruta está vacía, establecerla a /
+  if (cleanPath === '' || cleanPath === '//') {
+    cleanPath = '/';
+  }
+  
+  // Construir la nueva URL según el idioma objetivo
+  if (targetLang === defaultLang) {
+    return cleanPath;
+  } else {
+    // Remover barras duplicadas
+    const path = cleanPath === '/' ? '' : cleanPath;
+    return `/${targetLang}${path}`;
+  }
+}
+---
+
+<div class="language-picker">
+  {Object.entries(languages).map(([code, name]) => {
+    const targetUrl = buildLanguageUrl(code, currentPath, lang);
+    return (
+      <button 
+        data-lang={code}
+        data-url={targetUrl}
+        class:list={['lang-link', { active: code === lang }]}
+        aria-label={`Cambiar a ${name}`}
+        type="button"
+      >
+        {code.toUpperCase()}
+      </button>
+    );
+  })}
+</div>
+
+<script>
+  // Script para manejar el cambio de idioma
+  function initLanguagePicker() {
+    const langButtons = document.querySelectorAll('.lang-link');
+    
+    langButtons.forEach(button => {
+      button.addEventListener('click', (e) => {
+        const target = e.currentTarget as HTMLButtonElement;
+        const targetUrl = target.dataset.url;
+        const targetLang = target.dataset.lang;
+        
+        if (targetUrl && targetLang) {
+          // Guardar preferencia de idioma en localStorage
+          localStorage.setItem('preferredLanguage', targetLang);
+          
+          // Navegar a la nueva URL
+          window.location.href = targetUrl;
+        }
+      });
+    });
+  }
+
+  // Inicializar cuando el DOM esté listo
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initLanguagePicker);
+  } else {
+    initLanguagePicker();
+  }
+
+  // Re-inicializar después de navegaciones del lado del cliente (si usas view transitions)
+  document.addEventListener('astro:page-load', initLanguagePicker);
+</script>
+
+<style>
+  .language-picker {
+    display: flex;
+    gap: 0.5rem;
+    padding-top: 0.75rem;
+    margin-top: 0.75rem;
+    border-top: 1px solid rgba(163, 163, 163, 0.2);
+  }
+
+  /* En desktop: sin borde superior, sin padding extra */
+  @media (min-width: 640px) {
+    .language-picker {
+      padding-top: 0;
+      margin-top: 0;
+      border-top: none;
+    }
+  }
+
+  .lang-link {
+    padding: 0.375rem 0.75rem;
+    text-decoration: none;
+    color: #a3a3a3;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    background: transparent;
+    border: 1px solid transparent;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    line-height: 1;
+  }
+
+  .lang-link:hover {
+    background: rgba(163, 163, 163, 0.1);
+    color: #ffffff;
+    border-color: rgba(163, 163, 163, 0.2);
+  }
+
+  .lang-link.active {
+    background: #5755ff;
+    color: white;
+    font-weight: 600;
+    border-color: #5755ff;
+    cursor: default;
+  }
+
+  .lang-link:focus-visible {
+    outline: 2px solid #5755ff;
+    outline-offset: 2px;
+  }
+
+  /* Efecto hover solo si no está activo */
+  .lang-link.active:hover {
+    background: #5755ff;
+    border-color: #5755ff;
+  }
+</style>
