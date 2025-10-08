@@ -1,11 +1,11 @@
 import type { SiteConfig, SiteContent } from "../types";
 
 export const SITE_CONFIG: SiteConfig = {
-  title: "Jhoan Canchila — Software Engineer Front",
+  title: "hero.profile",
   author: "Jhoan Canchila",
   description:
     "Software Engineer based in San Francisco, USA. I specialize in UI design, web and mobile application development and maintenance.",
-  lang: "en",
+  lang: "es",
   siteLogo: "/alejandro-small.jpg",
   navLinks: [
     { text: 'nav.experience', href: "#experience" },

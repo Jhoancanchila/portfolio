@@ -5,6 +5,9 @@ type Props = Pick<SiteConfig, "author" | "socialLinks">;
 
 const { author, socialLinks } = Astro.props;
 const currentYear = new Date().getFullYear();
+
+import { getLangFromUrl, getTranslatedText } from '../i18n/utils';
+const lang = getLangFromUrl(Astro.url);
 ---
 
 <footer
@@ -27,7 +30,7 @@ const currentYear = new Date().getFullYear();
   </ul>
   <p class="text-xs">
     {author} © {currentYear}. <span class="text-neutral"
-      >All rights reserved.</span
+      >{getTranslatedText('footer.allRightsReserved', lang)}</span
     >
   </p>
 </footer>
