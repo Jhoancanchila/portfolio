@@ -1,0 +1,13 @@
+---
+// Badge.astro
+interface Props {
+  text: string;
+}
+
+const { text } = Astro.props;
+
+---
+
+<span class={`inline-flex items-center rounded-full font-medium bg-[#dbeafe] text-[#0E141B] text-xs px-2 py-0.5`}>
+  {text}
+</span>

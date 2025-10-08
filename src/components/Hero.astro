@@ -1,16 +1,28 @@
 ---
 import type { HeroProps } from "@types";
+import SplitText from "./react/SplitText";
 type Props = HeroProps;
 
 const { name, specialty, summary, email } = Astro.props;
 ---
 
 <section class="py-24 md:py-32" id="#hero">
-  <h1
-    class="mb-1.5 font-serif text-7xl font-bold tracking-tightest text-white sm:text-8xl md:mb-0 md:text-9xl"
-  >
-    {name}
-  </h1>
+  <div class="hero-name-container mb-1.5 md:mb-0">
+    <SplitText
+      text={name}
+      className="font-serif text-7xl font-bold tracking-tightest text-white sm:text-8xl md:text-9xl"
+      delay={100}
+      duration={0.6}
+      ease="power3.out"
+      splitType="chars"
+      from={{ opacity: 0, y: 40 }}
+      to={{ opacity: 1, y: 0 }}
+      threshold={0.1}
+      rootMargin="-100px"
+      textAlign="left"
+      client:load
+    />
+  </div>
   <p
     class="mb-9 font-serif text-4xl leading-[46px] font-bold tracking-tighter text-primary sm:text-5xl md:text-6xl"
   >
@@ -25,3 +37,37 @@ const { name, specialty, summary, email } = Astro.props;
     href={`mailto:${email}`}>Get in Touch</a
   >
 </section>
+
+<style>
+  /* Reservar espacio para el nombre y prevenir layout shift */
+  .hero-name-container {
+    /* Altura mínima basada en el tamaño del texto en diferentes breakpoints */
+    min-height: 5.25rem; /* ~84px para text-7xl */
+    display: block;
+    position: relative;
+  }
+  
+  @media (min-width: 640px) {
+    .hero-name-container {
+      min-height: 6rem; /* ~96px para text-8xl */
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .hero-name-container {
+      min-height: 8rem; /* ~128px para text-9xl */
+    }
+  }
+  
+  /* Asegurar que el componente React use todo el ancho disponible */
+  .hero-name-container :global(.split-parent) {
+    width: 100%;
+    display: block;
+  }
+  
+  /* Evitar flashes de contenido sin estilo */
+  .hero-name-container :global(.split-parent) {
+    visibility: visible;
+    opacity: 1;
+  }
+</style>

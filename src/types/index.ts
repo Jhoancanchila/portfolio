@@ -36,6 +36,7 @@ export interface ProjectProps {
   image: string;
   linkPreview?: string;
   linkSource?: string;
+  tools?: string[];
 }
 
 export interface AboutProps {
@@ -46,4 +47,20 @@ export interface AboutProps {
 export interface HeaderProps {
   siteLogo: string;
   navLinks: { text: string; href: string }[];
+}
+
+export interface SplitTextProps {
+  text: string;
+  className?: string;
+  delay?: number;
+  duration?: number;
+  ease?: string;
+  splitType?: 'chars' | 'words' | 'lines' | 'chars,words' | 'chars,lines' | 'words,lines' | 'chars,words,lines';
+  from?: { opacity: number; y: number; [key: string]: any };
+  to?: { opacity: number; y: number; [key: string]: any };
+  threshold?: number;
+  rootMargin?: string;
+  textAlign?: 'left' | 'center' | 'right' | 'justify';
+  tag?: 'p' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span' | 'div';
+  onAnimationComplete?: () => void;
 }

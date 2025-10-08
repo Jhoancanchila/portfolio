@@ -1,8 +1,8 @@
 import type { SiteConfig, SiteContent } from "../types";
 
 export const SITE_CONFIG: SiteConfig = {
-  title: "Alejandro Múnez — Mobile & Web Developer",
-  author: "Alejandro Múnez Cuntez",
+  title: "Jhoan Canchila — Software Engineer Front",
+  author: "Jhoan Canchila",
   description:
     "Software Engineer based in San Francisco, USA. I specialize in UI design, web and mobile application development and maintenance.",
   lang: "en",
@@ -13,11 +13,8 @@ export const SITE_CONFIG: SiteConfig = {
     { text: "About", href: "#about" },
   ],
   socialLinks: [
-    { text: "Twitter", href: "https://github.com/immois/astro-zen" },
-    { text: "LinkedIn", href: "https://github.com/immois/astro-zen" },
-    { text: "Github", href: "https://github.com/immois/astro-zen" },
-    { text: "Youtube", href: "https://github.com/immois/astro-zen" },
-    { text: "Dribbble", href: "https://github.com/immois/astro-zen" },
+    { text: "LinkedIn", href: "https://www.linkedin.com/in/jhoan-canchila-l%C3%A1zaro-449a021b2/" },
+    { text: "Github", href: "https://github.com/jhoancanchila" },
   ],
   socialImage: "/zen-og.png",
   canonicalURL: "https://astro-zen.vercel.app",
@@ -25,57 +22,62 @@ export const SITE_CONFIG: SiteConfig = {
 
 export const SITE_CONTENT: SiteContent = {
   hero: {
-    name: "Alejandro Múnez",
-    specialty: "Mobile & Web Developer",
+    name: "Jhoan Canchila",
+    specialty: "Software Engineer Front",
     summary:
       "Developer based in San Francisco, USA. I specialize in UI design, web and mobile application development and maintenance.",
-    email: "example@email.com",
+    email: "canchila.jhoan@gmail.com",
   },
   experience: [
     {
-      company: "Zalmart",
-      position: "Lead Android Developer",
-      startDate: "May 2018",
-      endDate: "Sept 2020",
+      company: "Periferia It Group",
+      position: "React Developer",
+      startDate: "Oct 2024",
+      endDate: "Jun 2025",
       summary: [
-        "Implemented advanced memory management and code optimization techniques, resulting in a reduction in application load time by 40% and a decrease in crashes by 25%. This significantly improved user experience and increased user retention by 20%.",
-        "I led a team of developers in building and integrating new features using Jetpack Android components such as LiveData and ViewModel. This enabled us to build scalable and maintainable applications, reducing the crash rate by 20% and speeding up the time to delivery of new features by 15%.",
-        "Integrated Google Pay for in-app purchases, resulting in a 35% increase in mobile transaction revenue. Additionally, implemented Firebase Analytics to gain insights into user behavior, enabling data-driven optimizations and a 30% increase in user retention.",
+        "Development of functionalities with React, applying the principles of Clean Architecture to ensure the modularity and scalability of applications.",
+        "Adopt continuous integration and continuous delivery (CI/CD) practices to optimize software development, minimizing errors, accelerating delivery time, and reducing deployment duration.",
+        "Collaborate in the analysis and development of scalable components for applications, aligned with customer requirements, using web development tools such as React, Material UI, Tailwind CSS, among others.",
+        "Propose improvements and refactorings to optimize web and mobile applications (developed with React and React Native) through the implementation of best practices."
       ],
     },
     {
-      company: "Bankit",
-      position: "Mobile Developer",
-      startDate: "Feb 2017",
-      endDate: "May 2018",
-      summary: [
-        "I designed and developed a mobile application using Flutter, allowing it to be deployed on both Android and iOS with a single codebase. This reduced development time by 50% and maintenance costs by 30%, facilitating a consistent user experience on both platforms.",
-        "I integrated biometric authentication and data encryption, significantly improving the security of user data. This implementation resulted in a 40% increase in user trust and a 25% reduction in unauthorized access attempts.",
-      ],
-    },
-    {
-      company: "Driveer",
+      company: "Negotiation By Design",
       position: "Frontend Developer",
-      startDate: "Jun 2015",
-      endDate: "Oct 2016",
+      startDate: "Ago 2022",
+      endDate: "Ene 2024",
+      summary: [
+        "Participate in the analysis and development of scalable component parts for your applications based on company requirements, implementing development tools such as React JS, Styled Components, Tailwind CSS, and external libraries.",
+        "Global state management using the Redux library.",
+        "Implement bidirectional communication techniques between client and server, using tools such as socket io.",
+        "Develop and maintain backend logic for applications, using technologies such as Node.js and Express js, ensuring efficiency and scalability."
+      ],
+    },
+    {
+      company: "Akelab",
+      position: "Frontend Developer",
+      startDate: "Ago 2021",
+      endDate: "Ago 2022",
       summary:
         "Developed and integrated a real-time vehicle tracking system using WebSockets, improving accuracy and data update in the application. This functionality increased user satisfaction by 30% and reduced customer service inquiries by 25%.",
     },
   ],
   projects: [
     {
-      name: "Spotifu Music",
-      summary: "A music streaming app that emulates Spotify's core features.",
-      linkPreview: "/",
-      linkSource: "https://github.com/immois/astro-zen",
-      image: "/spotifu.png",
+      name: "Tattoos Julia App",
+      summary: "A web platform where you can schedule an appointment for tattoo services.",
+      linkPreview: "https://tattoos-julia.vercel.app/",
+      linkSource: "https://github.com/Jhoancanchila/tattos-jhoan",
+      image: "/tattoos-julia.png",
+      tools: ["React", "Tailwind CSS", "formik" ],
     },
     {
-      name: "Shopp App",
-      summary: "An e-commerce platform that replicates Shopify's key features.",
-      linkPreview: "/",
-      linkSource: "https://github.com/immois/astro-zen",
-      image: "/shopify-clon.png",
+      name: "Outlet Store",
+      summary: "An e-commerce platform that simulates credit card payment flows.",
+      linkPreview: "https://outlet-store-vercel.vercel.app/",
+      linkSource: "https://github.com/Jhoancanchila/outlet-store.git",
+      image: "/outlet-store.png",
+      tools: ["React", "Tailwind CSS", "Redux"],
     },
     {
       name: "ClonTagram",
@@ -83,6 +85,7 @@ export const SITE_CONTENT: SiteContent = {
       linkPreview: "/",
       linkSource: "https://github.com/immois/astro-zen",
       image: "/clone-ig.png",
+      tools: ["React", "Tailwind CSS", "Firebase"],
     },
   ],
   about: {
