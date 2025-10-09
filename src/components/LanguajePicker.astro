@@ -41,37 +41,34 @@ function buildLanguageUrl(targetLang: string, currentPath: string, currentLang: 
   {Object.entries(languages).map(([code, name]) => {
     const targetUrl = buildLanguageUrl(code, currentPath, lang);
     return (
-      <button 
+      <a 
+        href={targetUrl}
         data-lang={code}
-        data-url={targetUrl}
         class:list={['lang-link', { active: code === lang }]}
         aria-label={`Cambiar a ${name}`}
-        type="button"
+        data-astro-prefetch
       >
         {code.toUpperCase()}
-      </button>
+      </a>
     );
   })}
 </div>
 
 <script>
-  // Script para manejar el cambio de idioma
+  // Script para guardar preferencia de idioma
   function initLanguagePicker() {
-    const langButtons = document.querySelectorAll('.lang-link');
+    const langLinks = document.querySelectorAll('.lang-link');
     
-    langButtons.forEach(button => {
-      button.addEventListener('click', (e) => {
-        const target = e.currentTarget as HTMLButtonElement;
-        const targetUrl = target.dataset.url;
+    langLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        const target = e.currentTarget as HTMLAnchorElement;
         const targetLang = target.dataset.lang;
         
-        if (targetUrl && targetLang) {
+        if (targetLang) {
           // Guardar preferencia de idioma en localStorage
           localStorage.setItem('preferredLanguage', targetLang);
-          
-          // Navegar a la nueva URL
-          window.location.href = targetUrl;
         }
+        // No hacer e.preventDefault() - dejar que Astro maneje la navegación
       });
     });
   }
@@ -83,7 +80,7 @@ function buildLanguageUrl(targetLang: string, currentPath: string, currentLang: 
     initLanguagePicker();
   }
 
-  // Re-inicializar después de navegaciones del lado del cliente (si usas view transitions)
+  // Re-inicializar después de navegaciones
   document.addEventListener('astro:page-load', initLanguagePicker);
 </script>
 
